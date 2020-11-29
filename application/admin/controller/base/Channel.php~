@@ -5,26 +5,27 @@ namespace app\admin\controller\base;
 use app\common\controller\Backend;
 
 /**
- * 业务区
+ * 进出通道
  *
  * @icon fa fa-circle-o
  */
-class Businessarea extends Backend
+class Channel extends Backend
 {
     
     /**
-     * Businessarea模型对象
-     * @var \app\admin\model\base\Businessarea
+     * Channel模型对象
+     * @var \app\admin\model\base\Channel
      */
     protected $model = null;
-    protected $searchFields = 'businessarea';
+    //protected $selectpageFields = 'channel';
+    protected $searchFields = 'channel';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\base\Businessarea;
+        $this->model = new \app\admin\model\base\Channel;
 
     }
 

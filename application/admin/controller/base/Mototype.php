@@ -17,7 +17,7 @@ class Mototype extends Backend
      * @var \app\admin\model\base\Mototype
      */
     protected $model = null;
-    protected $selectpageFields = 'mototype';
+    //protected $selectpageFields = 'mototype';
     protected $searchFields = 'mototype';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';

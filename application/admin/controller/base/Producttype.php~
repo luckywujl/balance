@@ -17,7 +17,7 @@ class Producttype extends Backend
      * @var \app\admin\model\base\Producttype
      */
     protected $model = null;
-    protected $selectpageFields = 'producttype';
+    //protected $selectpageFields = 'producttype_id';
     protected $searchFields = 'producttype';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
