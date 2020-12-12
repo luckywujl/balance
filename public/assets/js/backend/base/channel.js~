@@ -27,6 +27,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {checkbox: true},
                         //{field: 'channel_ID', title: __('Channel_id')},
                         {field: 'channel', title: __('Channel'), operate: 'LIKE'},
+                        {field: 'channel_iotype', title: __('Channel_iotype'), searchList: {"0":__('Channel_iotype 0'),"1":__('Channel_iotype 1')}, formatter: Table.api.formatter.normal},
+                        //{field: 'channel_weight', title: __('Channel_weight'), operate:'BETWEEN'},
+                        //{field: 'channel_plate_number', title: __('Channel_plate_number'), operate: 'LIKE'},
                         //{field: 'company_id', title: __('Company_id'), operate: 'LIKE'},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]

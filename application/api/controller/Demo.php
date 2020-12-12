@@ -3,6 +3,8 @@
 namespace app\api\controller;
 
 use app\common\controller\Api;
+use think\Db;
+use app\admin\model\base as base;
 
 /**
  * 示例接口
@@ -15,9 +17,9 @@ class Demo extends Api
     //如果接口已经设置无需登录,那也就无需鉴权了
     //
     // 无需登录的接口,*表示全部
-    protected $noNeedLogin = ['test', 'test1'];
+    protected $noNeedLogin = ['test', 'test1','getplate','receivedeviceinfo'];
     // 无需鉴权的接口,*表示全部
-    protected $noNeedRight = ['test2'];
+    protected $noNeedRight = ['test2',];
 
     /**
      * 测试方法
@@ -68,6 +70,52 @@ class Demo extends Api
     public function test3()
     {
         $this->success('返回成功', ['action' => 'test3']);
+    }
+    /**
+    *接收车牌信息
+    */
+    public function getplate() {
+       $doc = file_get_contents("php://input");
+       $jsondecode = json_decode($doc,true);
+		 $license = $jsondecode['AlarmInfoPlate']['result']['PlateResult']['license'];
+		 $ipaddr = $jsondecode['AlarmInfoPlate']['ipaddr'];
+       $channel = new base\Channel();
+    	  Db::startTrans();
+    	  $channel
+    			->where(['channel_ipnc'=>$ipaddr])
+            ->update(['channel_plate_number'=>$license]);//根据传过来的IP填入车牌号码
+        Db::commit();
+         
+   // 发送开闸命令
+    //echo '{"Response_AlarmInfoPlate":{"info":"ok","content":"...","is_pay":"true"}}';
+       
+    }
+    /**
+    *接收轮询
+    */
+    public function receivedeviceinfo() {
+    	 $doc = file_get_contents("php://input");
+       $jsondecode = json_decode($doc,true);
+		 //$license = $jsondecode['AlarmInfoPlate']['result']['PlateResult']['license'];
+		 $ipaddr = $jsondecode['AlarmInfoPlate']['ipaddr'];
+		 $channel = new base\Channel();
+		 $channel_info = $channel
+		        ->where(['channel_ipnc'=>$ipaddr])
+		        ->find();
+		 if ($channel_info['channel_status']==1) {
+		 	Db::startTrans();
+		 	// 发送开闸命令
+		 	$channel
+    			->where(['channel_ipnc'=>$ipaddr])
+            ->update(['channel_status'=>0]);//根据传过来的IP填入车牌号码
+            
+          echo '{"Response_AlarmInfoPlate":{"info":"ok","content":"...","is_pay":"true"}}';
+          Db::commit();
+		 } else {
+		 //echo '{"Response_AlarmInfoPlate":{"info":"ok","content":"...","is_pay":"true"}}';
+		 }
+    	
+       
     }
 
 }

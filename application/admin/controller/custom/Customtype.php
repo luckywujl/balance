@@ -25,7 +25,7 @@ class Customtype extends Backend
     {
         parent::_initialize();
         $this->model = new \app\admin\model\custom\Customtype;
-
+        $this->view->assign("customtypeAttributeList", $this->model->getCustomtypeAttributeList());
     }
 
     public function import()

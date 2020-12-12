@@ -25,14 +25,23 @@ class Channel extends Model
 
     // 追加属性
     protected $append = [
-
+        'channel_iotype_text'
     ];
     
 
     
+    public function getChannelIotypeList()
+    {
+        return ['0' => __('Channel_iotype 0'), '1' => __('Channel_iotype 1')];
+    }
 
 
-
+    public function getChannelIotypeTextAttr($value, $data)
+    {
+        $value = $value ? $value : (isset($data['channel_iotype']) ? $data['channel_iotype'] : '');
+        $list = $this->getChannelIotypeList();
+        return isset($list[$value]) ? $list[$value] : '';
+    }
 
 
 

@@ -3,6 +3,9 @@
 namespace app\admin\controller\custom;
 
 use app\common\controller\Backend;
+use think\Db;
+use app\admin\model\custom as custom;
+
 
 /**
  * 卡信息
@@ -20,6 +23,7 @@ class Card extends Backend
     protected $searchFields = 'card_code,card_encode,customcustom.custom_name,customcustom.custom_code,customcustom.custom_address';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
+    protected $noNeedRight = ['getcardinfo'];
 
     public function _initialize()
     {
@@ -74,5 +78,36 @@ class Card extends Backend
         }
         return $this->view->fetch();
     }
+    
+	/**
+     * 查找卡信息
+     */
+    public function getcardinfo()
+    {
+      if (!empty($this->request->post("card_info"))){
+    	
+    	$card_info = $this->request->post("card_info");
+    	$card = $this->model
+        ->where(['card_code|card_encode'=>$card_info,'card_status'=>0])//卡状态要求是正常 
+        ->find();  
+      
+       if ($card){
+       	$custom = new custom\Custom();
+       	$custom_info = $custom
+       	->where(['custom_id'=>$card['card_custom_id'],'custom_status'=>0])//商户状态为正常
+       	->find();
+       	if($custom_info) {
+       		$custom_info['card_code']=$card['card_code'];
+       		$custom_info['card_id']=$card['card_id'];
+       		$this->success('执行成功',null,$custom_info);
+       	}else {
+        	 $this->error('卡号有误或商户状态异常，请核实',null,null);
+       	}   	
+       } else {
+    	   $this->error('卡号有误或状态异常，请核实',null,null);
+    	}
+    } 
+    
+ }
 
 }

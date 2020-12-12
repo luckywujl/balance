@@ -17,12 +17,15 @@ class Customtype extends Backend
      * @var \app\admin\model\custom\Customtype
      */
     protected $model = null;
+    protected $searchFields = 'customtype';
+    protected $dataLimit = 'personal';
+    protected $dataLimitField = 'company_id';
 
     public function _initialize()
     {
         parent::_initialize();
         $this->model = new \app\admin\model\custom\Customtype;
-
+        $this->view->assign("customtypeAttributeList", $this->model->getCustomtypeAttributeList());
     }
 
     public function import()

@@ -22,12 +22,13 @@ class Admin extends Backend
      * @var \app\admin\model\Admin
      */
     protected $model = null;
-    protected $selectpageFields = 'id,username,nickname,avatar';
+    //protected $selectpageFields = 'id,username,nickname,avatar';
     protected $searchFields = 'id,username,nickname';
-    protected $childrenGroupIds = [];
-    protected $childrenAdminIds = [];
+    //protected $childrenGroupIds = [];
+    //protected $childrenAdminIds = [];
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
+    protected $noNeedRight = ['index'];
 
     public function _initialize()
     {
@@ -271,8 +272,8 @@ class Admin extends Backend
      */
     public function selectpage()
     {
-        $this->dataLimit = 'auth';
-        $this->dataLimitField = 'id';
+        $this->dataLimit = 'personal';
+        $this->dataLimitField = 'company_id';
         return parent::selectpage();
     }
 }

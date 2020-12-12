@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:93:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/base/channel/add.html";i:1606618874;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:93:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/base/channel/add.html";i:1607043001;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -63,7 +63,20 @@
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2"><?php echo __('Channel'); ?>:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-channel" data-rule="required" class="form-control" name="row[channel]" type="text">
+            <input id="c-channel" class="form-control" name="row[channel]" type="text">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2"><?php echo __('Channel_iotype'); ?>:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <div class="radio">
+            <?php if(is_array($channelIotypeList) || $channelIotypeList instanceof \think\Collection || $channelIotypeList instanceof \think\Paginator): if( count($channelIotypeList)==0 ) : echo "" ;else: foreach($channelIotypeList as $key=>$vo): ?>
+            <label for="row[channel_iotype]-<?php echo $key; ?>"><input id="row[channel_iotype]-<?php echo $key; ?>" name="row[channel_iotype]" type="radio" value="<?php echo $key; ?>" <?php if(in_array(($key), explode(',',"0"))): ?>checked<?php endif; ?> /> <?php echo $vo; ?></label> 
+            <?php endforeach; endif; else: echo "" ;endif; ?>
+            </div>
+
         </div>
     </div>
     

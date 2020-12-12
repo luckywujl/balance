@@ -21,6 +21,7 @@ class Remark extends Backend
     protected $searchFields = 'remark';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
+    protected $noNeedRight = ['index'];
 
     public function _initialize()
     {

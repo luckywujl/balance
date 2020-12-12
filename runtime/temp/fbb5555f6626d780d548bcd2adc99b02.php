@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:94:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/base/mototype/add.html";i:1606576652;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:94:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/base/mototype/add.html";i:1607355962;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -64,6 +64,12 @@
         <label class="control-label col-xs-12 col-sm-2"><?php echo __('Mototype'); ?>:</label>
         <div class="col-xs-12 col-sm-8">
             <input id="c-mototype" class="form-control" name="row[mototype]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2"><?php echo __('Mototype_limitweight'); ?>:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-mototype_limitweight" class="form-control" name="row[mototype_limitweight]" type="number">
         </div>
     </div>
     

@@ -21,6 +21,7 @@ class Mototype extends Backend
     protected $searchFields = 'mototype';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
+    protected $noNeedRight = ['index'];
 
     public function _initialize()
     {

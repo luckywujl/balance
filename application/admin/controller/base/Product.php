@@ -20,6 +20,7 @@ class Product extends Backend
     protected $searchFields = 'product_code,product_name';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
+    protected $noNeedRight = ['index'];
 
     public function _initialize()
     {

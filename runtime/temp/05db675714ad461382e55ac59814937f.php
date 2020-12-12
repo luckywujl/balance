@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/custom/custom/edit.html";i:1606664088;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/custom/custom/edit.html";i:1607355086;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -73,15 +73,15 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2"><?php echo __('Custom_customtype_id'); ?>:</label>
+        <label class="control-label col-xs-12 col-sm-2"><?php echo __('Custom_customtype'); ?>:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-custom_customtype_id" data-rule="required" data-source="custom/customtype/index" data-field = "customtype" data-primary-key="customtype_ID" class="form-control selectpage" class="form-control selectpage" name="row[custom_customtype_id]" type="text" value="<?php echo htmlentities($row['custom_customtype_id']); ?>">
+            <input id="c-custom_customtype" data-rule="required" data-source="custom/customtype/index" data-field = "customtype" data-primary-key = "customtype" class="form-control selectpage" name="row[custom_customtype]" type="text" value="<?php echo htmlentities($row['custom_customtype']); ?>">
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2"><?php echo __('Custom_businessarea_id'); ?>:</label>
+        <label class="control-label col-xs-12 col-sm-2"><?php echo __('Custom_businessarea'); ?>:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-custom_businessarea_id" data-rule="required" data-source="base/businessarea/index" class="form-control selectpage" data-field = "businessarea" data-primary-key="businessarea_id" name="row[custom_businessarea_id]" type="text" value="<?php echo htmlentities($row['custom_businessarea_id']); ?>">
+            <input id="c-custom_businessarea" data-rul="required" data-source="base/businessarea/index" data-field="businessarea" data-primary-key="businessarea" class="form-control selectpage" name="row[custom_businessarea]" type="text" value="<?php echo htmlentities($row['custom_businessarea']); ?>">
         </div>
     </div>
     <div class="form-group">
@@ -100,6 +100,18 @@
         <label class="control-label col-xs-12 col-sm-2"><?php echo __('Custom_conact'); ?>:</label>
         <div class="col-xs-12 col-sm-8">
             <input id="c-custom_conact" class="form-control" name="row[custom_conact]" type="text" value="<?php echo htmlentities($row['custom_conact']); ?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2"><?php echo __('Custom_IDentity'); ?>:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-custom_IDentity" class="form-control" name="row[custom_IDentity]" type="text" value="<?php echo htmlentities($row['custom_IDentity']); ?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2"><?php echo __('Custom_remark'); ?>:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-custom_remark" class="form-control" name="row[custom_remark]" type="text" value="<?php echo htmlentities($row['custom_remark']); ?>">
         </div>
     </div>
     <div class="form-group">

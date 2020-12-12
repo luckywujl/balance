@@ -46,14 +46,5 @@ class Custom extends Model
 
 
 
-    public function customcustomtype()
-    {
-        return $this->belongsTo('app\admin\model\custom\Customtype', 'custom_customtype_id', 'customtype_ID', [], 'LEFT')->setEagerlyType(0);
-    }
-
-
-    public function basebusinessarea()
-    {
-        return $this->belongsTo('app\admin\model\base\Businessarea', 'custom_businessarea_id', 'businessarea_id', [], 'LEFT')->setEagerlyType(0);
-    }
+    
 }

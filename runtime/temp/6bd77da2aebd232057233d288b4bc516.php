@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:99:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/custom/customtype/edit.html";i:1606657403;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:99:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/custom/customtype/edit.html";i:1607043217;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -63,10 +63,23 @@
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2"><?php echo __('Customtype'); ?>:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-customtype" data-rule="required" class="form-control" name="row[customtype]" type="text" value="<?php echo htmlentities($row['customtype']); ?>">
+            <input id="c-customtype" class="form-control" name="row[customtype]" type="text" value="<?php echo htmlentities($row['customtype']); ?>">
         </div>
     </div>
     
+    
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2"><?php echo __('Customtype_attribute'); ?>:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <div class="radio">
+            <?php if(is_array($customtypeAttributeList) || $customtypeAttributeList instanceof \think\Collection || $customtypeAttributeList instanceof \think\Paginator): if( count($customtypeAttributeList)==0 ) : echo "" ;else: foreach($customtypeAttributeList as $key=>$vo): ?>
+            <label for="row[customtype_attribute]-<?php echo $key; ?>"><input id="row[customtype_attribute]-<?php echo $key; ?>" name="row[customtype_attribute]" type="radio" value="<?php echo $key; ?>" <?php if(in_array(($key), is_array($row['customtype_attribute'])?$row['customtype_attribute']:explode(',',$row['customtype_attribute']))): ?>checked<?php endif; ?> /> <?php echo $vo; ?></label> 
+            <?php endforeach; endif; else: echo "" ;endif; ?>
+            </div>
+
+        </div>
+    </div>
     <div class="form-group layer-footer">
         <label class="control-label col-xs-12 col-sm-2"></label>
         <div class="col-xs-12 col-sm-8">

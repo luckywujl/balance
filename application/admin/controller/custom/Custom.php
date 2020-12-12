@@ -3,6 +3,7 @@
 namespace app\admin\controller\custom;
 
 use app\common\controller\Backend;
+use think\Db;
 
 /**
  * 客户信息
@@ -17,7 +18,7 @@ class Custom extends Backend
      * @var \app\admin\model\custom\Custom
      */
     protected $model = null;
-    protected $searchFields = 'custom_name,custom_code,custom_address';
+    protected $searchFields = 'custom_name,custom_code,custom_address,custom_IDentity';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
 
@@ -38,38 +39,54 @@ class Custom extends Backend
      * 因此在当前控制器中可不用编写增删改查的代码,除非需要自己控制这部分逻辑
      * 需要将application/admin/library/traits/Backend.php中对应的方法复制到当前控制器,然后进行修改
      */
-    
-
     /**
-     * 查看
+     * 添加
      */
-    public function index()
+    public function add()
     {
-        //当前是否为关联查询
-        $this->relationSearch = true;
-        //设置过滤方法
-        $this->request->filter(['strip_tags', 'trim']);
-        if ($this->request->isAjax()) {
-            //如果发送的来源是Selectpage，则转发到Selectpage
-            if ($this->request->request('keyField')) {
-                return $this->selectpage();
+        if ($this->request->isPost()) {
+            $params = $this->request->post("row/a");
+            if ($params) {
+                $params = $this->preExcludeFields($params);
+                //加入身份证检测，以防重复开户
+                $custom_info = $this->model
+                       ->where(['custom_IDentity'=>$params['custom_IDentity'],'company_id'=>$this->auth->company_id])
+                       ->find();
+                if($custom_info) {
+                  $this->error(__('该身份证号码已被'.$custom_info['custom_name'].'['.$custom_info['custom_code'].']开户，请不要重复开户,'));
+                }       
+
+                if ($this->dataLimit && $this->dataLimitFieldAutoFill) {
+                    $params[$this->dataLimitField] = $this->auth->company_id;
+                }
+                $result = false;
+                Db::startTrans();
+                try {
+                    //是否采用模型验证
+                    if ($this->modelValidate) {
+                        $name = str_replace("\\model\\", "\\validate\\", get_class($this->model));
+                        $validate = is_bool($this->modelValidate) ? ($this->modelSceneValidate ? $name . '.add' : $name) : $this->modelValidate;
+                        $this->model->validateFailException(true)->validate($validate);
+                    }
+                    $result = $this->model->allowField(true)->save($params);
+                    Db::commit();
+                } catch (ValidateException $e) {
+                    Db::rollback();
+                    $this->error($e->getMessage());
+                } catch (PDOException $e) {
+                    Db::rollback();
+                    $this->error($e->getMessage());
+                } catch (Exception $e) {
+                    Db::rollback();
+                    $this->error($e->getMessage());
+                }
+                if ($result !== false) {
+                    $this->success();
+                } else {
+                    $this->error(__('No rows were inserted'));
+                }
             }
-            list($where, $sort, $order, $offset, $limit) = $this->buildparams();
-
-            $list = $this->model
-                    ->with(['customcustomtype','basebusinessarea'])
-                    ->where($where)
-                    ->order($sort, $order)
-                    ->paginate($limit);
-
-            foreach ($list as $row) {
-                
-                
-            }
-
-            $result = array("total" => $list->total(), "rows" => $list->items());
-
-            return json($result);
+            $this->error(__('Parameter %s can not be empty', ''));
         }
         return $this->view->fetch();
     }
