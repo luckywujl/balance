@@ -22,12 +22,17 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
                 pk: 'statement_id',
                 sortName: 'statement_id',
+                
                 columns: [
                     [
                         {checkbox: true},
                         //{field: 'statement_id', title: __('Statement_id')},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate},
                         {field: 'statement_code', title: __('Statement_code'), operate: 'LIKE'},
+								{field: 'customcustom.custom_name', title: __('Customcustom.custom_name'), operate: 'LIKE'},
+                        {field: 'customcustom.custom_customtype', title: __('Customcustom.custom_customtype'), operate: 'LIKE'},
+                        {field: 'statement_status', title: __('Statement_status'), searchList: {"0":__('Statement_status 0'),"1":__('Statement_status 1')}, formatter: Table.api.formatter.status},
+                                                
                         {field: 'statement_date', title: __('Statement_date'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
                         {field: 'statement_plate_number', title: __('Statement_plate_number'), operate: 'LIKE'},
                         {field: 'statement_mototype', title: __('Statement_mototype'), operate: 'LIKE'},
@@ -47,7 +52,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         //{field: 'statement_indetail_id', title: __('Statement_indetail_id')},
                         //{field: 'statement_outdetail_id', title: __('Statement_outdetail_id'), operate: 'LIKE'},
                         {field: 'statement_checker', title: __('Statement_checker'), operate: 'LIKE'},
-                        {field: 'statement_status', title: __('Statement_status'), searchList: {"0":__('Statement_status 0'),"1":__('Statement_status 1')}, formatter: Table.api.formatter.status},
                         //{field: 'company_id', title: __('Company_id')},
                         //{field: 'baseproduct.product_ID', title: __('Baseproduct.product_id')},
                         {field: 'baseproduct.product_code', title: __('Baseproduct.product_code'), operate: 'LIKE'},
@@ -57,8 +61,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         //{field: 'baseproduct.company_id', title: __('Baseproduct.company_id'), operate: 'LIKE'},
                         //{field: 'customcustom.custom_id', title: __('Customcustom.custom_id')},
                         {field: 'customcustom.custom_code', title: __('Customcustom.custom_code'), operate: 'LIKE'},
-                        {field: 'customcustom.custom_name', title: __('Customcustom.custom_name'), operate: 'LIKE'},
-                        {field: 'customcustom.custom_customtype', title: __('Customcustom.custom_customtype'), operate: 'LIKE'},
                         {field: 'customcustom.custom_businessarea', title: __('Customcustom.custom_businessarea'), operate: 'LIKE'},
                         {field: 'customcustom.custom_address', title: __('Customcustom.custom_address'), operate: 'LIKE'},
                         {field: 'customcustom.custom_tel', title: __('Customcustom.custom_tel'), operate: 'LIKE'},
@@ -75,6 +77,28 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 为表格绑定事件
             Table.api.bindevent(table);
+            $(document).on("click", ".btn-repay", function () {
+                //在table外不可以使用添加.btn-change的方法
+                //只能自己调用Table.api.multi实现
+                var ids = Table.api.selectedids(table);
+    								layer.confirm('确定要反结算吗?', {btn: ['是','否'] },
+       							 function(index){
+        					    layer.close(index);
+          						  $.post("financial/statement/repay", {ids:ids , action:'success', reply:''},function(response){
+             				   if(response.code == 1){
+                 	          Toastr.success(response.msg)
+                            $(".btn-refresh").trigger('click');
+                          }else{
+                          Toastr.error(response.msg)
+                          }
+                      }, 'json')
+                    },
+                 function(index){
+                 layer.close(index);
+                 }
+                 );
+            });
+            
             
         },
         add: function () {

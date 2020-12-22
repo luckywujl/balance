@@ -21,6 +21,7 @@ class Producttype extends Backend
     protected $searchFields = 'producttype';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
+    protected $noNeedRight = ['index'];
 
     public function _initialize()
     {

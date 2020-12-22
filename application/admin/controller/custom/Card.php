@@ -99,6 +99,7 @@ class Card extends Backend
        	if($custom_info) {
        		$custom_info['card_code']=$card['card_code'];
        		$custom_info['card_id']=$card['card_id'];
+       
        		$this->success('执行成功',null,$custom_info);
        	}else {
         	 $this->error('卡号有误或商户状态异常，请核实',null,null);

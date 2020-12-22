@@ -18,7 +18,7 @@ class Statement extends Backend
      * @var \app\admin\model\financial\Statement
      */
     protected $model = null;
-    protected $searchFields = 'statement_code';
+    protected $searchFields = 'statement_code,customcustom.custom_code';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
 
@@ -50,18 +50,22 @@ class Statement extends Backend
         $this->relationSearch = true;
         //设置过滤方法
         $this->request->filter(['strip_tags', 'trim']);
+    
+    	 
         if ($this->request->isAjax()) {
             //如果发送的来源是Selectpage，则转发到Selectpage
             if ($this->request->request('keyField')) {
                 return $this->selectpage();
             }
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
-
-            $list = $this->model
+           
+            	$list = $this->model
                     ->with(['baseproduct','customcustom'])
                     ->where($where)
                     ->order($sort, $order)
                     ->paginate($limit);
+              
+            
 
             foreach ($list as $row) {
                 
@@ -127,6 +131,24 @@ class Statement extends Backend
         }
         $this->view->assign("row", $row);
         return $this->view->fetch();
+    }
+    
+     /**
+    *反结算
+    */
+    public function repay($ids="")
+    {
+    	if ($ids) {
+    		$pk = $this->model->getPk();
+        $adminIds = $this->getDataLimitAdminIds();
+        if (is_array($adminIds)) {
+                $this->model->where($this->dataLimitField, 'in', $adminIds);
+            }
+            $main = $this->model->where($pk, 'in', $ids)->update(['statement_status'=>0]); //获得选中的编印主表集合
+    		$this->success('反结算完成');
+    	}
+    	$this->error(__('Parameter %s can not be empty', 'ids'));
+    	$this->success('反结算完成');
     }
 
 }
