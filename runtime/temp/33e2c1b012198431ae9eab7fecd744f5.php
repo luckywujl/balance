@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:97:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/work/statement/index.html";i:1607781491;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:97:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/work/statement/index.html";i:1608655278;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -102,7 +102,7 @@
             <input id="c-iodetail_card_id" data-rule="required"  class="form-control " name="row[iodetail_card_id]" type="text" value="">
         </div>
         
-        <div class="col-xs-12 col-sm-1" hidden="hidden" >
+        <div class="col-xs-12 col-sm-1" hidden="hidden"  >
             <input id="c-iodetail_custom_id" data-rule="required"  class="form-control " name="row[iodetail_custom_id]" type="text" value="">
         </div>
         

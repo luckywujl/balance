@@ -23,7 +23,7 @@ class Indetail extends Backend
     protected $searchFields = 'iodetail_plate_number,iodetail_code,iodetail_card_code,customcustom.custom_name,customcustom.custom_tel';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
-    protected $noNeedRight = ['getindetailinfobyplate','getindetailinfobycard','getoutdetailinfo'];
+    protected $noNeedRight = ['list','getindetailinfobyid','getindetailinfobyplate','getindetailinfobycard','getoutdetailinfo'];
 
     public function _initialize()
     {
@@ -199,6 +199,7 @@ class Indetail extends Backend
      */
     public function getindetailinfobyplate()
     {
+      	
     	 if (!empty($this->request->post("iodetail_plate_number"))){
     	 	$plate_number = $this->request->post("iodetail_plate_number");
     	 	
@@ -237,50 +238,52 @@ class Indetail extends Backend
      */
     public function getindetailinfobycard()
     {
+    	//当前是否为关联查询
+        $this->relationSearch = true;
     	 if (!empty($this->request->post("card_info"))){
     	 	$card_info = $this->request->post("card_info");
+    	 	//1、先根据卡号或卡内码查找卡信息
     	 	$cardinfo = new custom\Card();
     	 	$card = $cardinfo
           ->where(['card_code|card_encode'=>$card_info,'card_status'=>0])//卡状态要求是正常 
           ->find();
+          //2、根据找到的卡信息，查找入场记录
           if ($card){
           	$detail_info = $this->model
+          	
     	 		->where(['Iodetail_card_id'=>$card['card_id'],'iodetail_iotype'=>1,'iodetail_status'=>0])
             ->where(['company_id'=>$this->auth->company_id])
-            ->find();
+            ->select();
             } else {
+            	//3、如果输入的不是卡号或卡内码，再根据入场单号查找入场记录
             $detail_info = $this->model
+            
     	 		->where(['Iodetail_code'=>$card_info,'iodetail_iotype'=>1,'iodetail_status'=>0])
             ->where(['company_id'=>$this->auth->company_id])
-            ->find();	
-          	//$this->error('卡号有误或商户状态异常，请核实',null,null);
+            ->select();	
+          	
           } 
          if($detail_info) {
-         	$custom = new custom\Custom();
-            $custom_info = $custom 
-              ->where(['custom_id'=>$detail_info['iodetail_custom_id'],'custom_status'=>0])//商户状态为正常
-              ->find();
-            if($custom_info) {
-               $detail_info['iodetail_custom_id'] = $custom_info['custom_id'];
-               $detail_info['iodetail_custom_name'] = $custom_info['custom_name'];
-               $detail_info['iodetail_custom_address'] = $custom_info['custom_address'];
-               $detail_info['iodetail_custom_customtype'] = $custom_info['custom_customtype']; 
+         	   $custom = new custom\Custom();
+               $custom_info = $custom 
+                ->where(['custom_id'=>$detail_info[0]['iodetail_custom_id'],'custom_status'=>0])//商户状态为正常
+                ->find();
                $customtype = new custom\Customtype();
-               		$customtype_info = $customtype
-               		  ->where(['customtype'=>$custom_info['custom_customtype'],'company_id'=>$this->auth->company_id])
-               		  ->find();
-               		$detail_info['iodetail_custom_customtype_attribute'] = $customtype_info['customtype_attribute'];  
+               $customtype_info = $customtype
+                 ->where(['customtype'=>$custom_info['custom_customtype'],'company_id'=>$this->auth->company_id])
+                 ->find();
                  
-                $this->success(null,null,$detail_info);   
-            } else { 
-              $this->error('卡号有误或商户状态异常，请核实',null,null);
-         }  
+               $detail['recordnumber'] = count($detail_info);  
+               $detail['data'] =$detail_info;  
+               $detail['custom'] =$custom_info;
+               $detail['customtype'] = $customtype_info;
+               
+               $this->success(null,null,$detail); 
+           
+         
     	 } else {
     	    $this->error('未找到该卡的入场信息，请核实',null,null);
     	 }
-          
-    	 	
-    
     }
    }
    
@@ -318,4 +321,92 @@ class Indetail extends Backend
         
         return json($result);
     }
+    
+    /**
+     * 出场记录列表
+     */
+    public function list()
+    {
+        //当前是否为关联查询
+        $this->relationSearch = true;
+        $params = $this->request->param();//接收过滤条件
+    	 	//1、先根据卡号或卡内码查找卡信息
+    	 	$cardinfo = new custom\Card();
+    	 	$card = $cardinfo
+          ->where(['card_code|card_encode'=>$params['card_info'],'card_status'=>0])//卡状态要求是正常 
+          ->find();
+          
+        //设置过滤方法
+        $this->request->filter(['strip_tags', 'trim']);
+        if ($this->request->isAjax()) {
+            //如果发送的来源是Selectpage，则转发到Selectpage
+            if ($this->request->request('keyField')) {
+                return $this->selectpage();
+            }
+            list($where, $sort, $order, $offset, $limit) = $this->buildparams();
+
+            $list = $this->model
+                    ->with(['customcustom','baseproduct'])
+                    ->where($where)
+                    ->where('iodetail_custom_id',$card['card_custom_id'])
+                    ->where(['iodetail_status'=>0,'iodetail_iotype'=>1])  //未结算,入数据
+                    ->order($sort, $order)
+                    ->paginate($limit);
+
+            foreach ($list as $row) {
+                
+                
+            }
+
+            $result = array("total" => $list->total(), "rows" => $list->items());
+
+            return json($result);
+        }
+        return $this->view->fetch();
+    }
+    
+    /**
+     * 根据卡信息查找对应的入场记录
+     */
+    public function getindetailinfobyid()
+    {
+    		
+    	 if (!empty($this->request->param())){
+    	 	$params = $this->request->param();//接收过滤条件
+    	 	   $ids = $params['iodetail_id'];
+            
+    	 	   $row = $this->model->get($ids);
+    	 	   
+            //再根据入场单号ID查找入场记录
+            $detail_info = $this->model
+            
+    	 		->where(['iodetail_ID'=>$row['iodetail_ID'],'iodetail_iotype'=>1,'iodetail_status'=>0])
+            ->where(['company_id'=>$this->auth->company_id])
+            ->select();	
+          //	$this->error($params['iodetail_id'],null,null);
+          // $this->error($ids,null,null);
+         if($detail_info) {
+         	   $custom = new custom\Custom();
+               $custom_info = $custom 
+                ->where(['custom_id'=>$detail_info[0]['iodetail_custom_id'],'custom_status'=>0])//商户状态为正常
+                ->find();
+               $customtype = new custom\Customtype();
+               $customtype_info = $customtype
+                 ->where(['customtype'=>$custom_info['custom_customtype'],'company_id'=>$this->auth->company_id])
+                 ->find();
+                 
+               $detail['recordnumber'] = count($detail_info);  
+               $detail['data'] =$detail_info;  
+               $detail['custom'] =$custom_info;
+               $detail['customtype'] = $customtype_info;
+               
+               $this->success(null,null,$detail); 
+           
+         
+    	 } else {
+    	    $this->error('未找到该卡的入场信息，请核实',null,null);
+    	 }
+    	 }
+    }
+   
 }

@@ -253,8 +253,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form','printing'], function 
                return false;    															
            	},function(data){
                //失败的回调 
-					
-           		//return false;	
+					alert("取通道信息失败");
+           		return false;	
                }											  		 		  
  			   	);
  			   	//再获取进场记录
@@ -263,30 +263,101 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form','printing'], function 
              	data:{card_info:$("#c-iodetail_card_code").val()} //再将收到的card_code用POST方式发给主表控制器的total
          	 }, 
          	 function (data,ret) { //success 用于接收主表控制器发过来的数据
-         	   $("#c-iodetail_plate_number").val(data.iodetail_plate_number);
-         	   $("#c-iodetail_inweight").val(data.iodetail_weight);
-         	   $("#c-iodetail_mototype").val(data.iodetail_mototype);
-         	   $("#c-iodetail_checker").val(data.iodetail_checker);
-					//$("#c-iodetail_checker").selectPageRefresh();
-         	   $("#c-iodetail_product_id").val(data.iodetail_product_id);
+         	 if (data.recordnumber  <'2') {
+         	   $("#c-iodetail_plate_number").val(data.data[0].iodetail_plate_number);
+         	   $("#c-iodetail_inweight").val(data.data[0].iodetail_weight);
+         	   $("#c-iodetail_mototype").val(data.data[0].iodetail_mototype);
+         	   $("#c-iodetail_checker").val(data.data[0].iodetail_checker);
+					$("#c-iodetail_checker").selectPageRefresh();
+         	   $("#c-iodetail_product_id").val(data.data[0].iodetail_product_id);
          	   
          	   $("#c-iodetail_product_id").selectPageRefresh();
-         	   $("#c-iodetail_custom_id").val(data.iodetail_custom_id);
-         	   $("#c-iodetail_custom_customtype_attribute").val(data.iodetail_custom_customtype_attribute);
-         	   $("#c-iodetail_custom_name").val(data.iodetail_custom_name);
-					$("#c-iodetail_custom_address").val(data.iodetail_custom_address);
-					$("#c-iodetail_custom_customtype").val(data.iodetail_custom_customtype);
-					$("#c-iodetail_card_code").val(data.iodetail_card_code);  
-					$("#c-iodetail_card_id").val(data.iodetail_card_id); 
-					$("#c-iodetail_in_id").val(data.iodetail_ID);
+         	   $("#c-iodetail_custom_id").val(data.data[0].iodetail_custom_id);
+         	   $("#c-iodetail_custom_customtype_attribute").val(data.customtype.customtype_attribute);
+         	   $("#c-iodetail_custom_name").val(data.custom.custom_name);
+					$("#c-iodetail_custom_address").val(data.custom.custom_address);
+					$("#c-iodetail_custom_customtype").val(data.custom.custom_customtype);
+					$("#c-iodetail_card_code").val(data.data[0].iodetail_card_code);  
+					$("#c-iodetail_card_id").val(data.data[0].iodetail_card_id); 
+					$("#c-iodetail_in_id").val(data.data[0].iodetail_ID);
 					
-					var inDate = new Date(data.iodetail_iotime*1000);
+					var inDate = new Date(data.data[0].iodetail_iotime*1000);
          	   //$("#c-iodetail_intime").val(data.iodetail_iotime);
          	   $("#c-iodetail_intime").val(inDate.getFullYear()+'-'+(inDate.getMonth()+1)+'-'+inDate.getDate()+" "+inDate.getHours()+':'+inDate.getMinutes()+':'+inDate.getSeconds());
          		
          	   
          		console.info(data); 
-         		count(); //计算净重及金额		    													      
+         		count(); //计算净重及金额		
+         	 } else { //如果一卡多车，弹窗提示
+         	   //alert("该卡有多辆车入场信息");
+         	   //弹窗显示该客户的所在在场车辆信息
+         	  Fast.api.open('work/indetail/list?card_info='+$("#c-iodetail_card_code").val(),'入场记录',{//?card_code=" + $(this).attr("id") + "&multiple=" + multiple + "&mimetype=" + mimetype, __('Choose'), {
+	           area:['80%', '80%'],
+		           callback: function (data) {
+		           //	alert(data);//获得到返回所选记录
+		           	var iodetail_id = data;
+		           //再根据返回所选数据获取进场记录
+						Fast.api.ajax({
+        					url:'work/indetail/getindetailinfobyid',        													     
+             			data:{iodetail_id:data} //再将收到的card_code用POST方式发给主表控制器的total
+        			 	 }, 
+         			 function (data,ret) { //success 用于接收主表控制器发过来的数据
+         	 
+         			   $("#c-iodetail_plate_number").val(data.data[0].iodetail_plate_number);
+         			   $("#c-iodetail_inweight").val(data.data[0].iodetail_weight);
+         	 		  $("#c-iodetail_mototype").val(data.data[0].iodetail_mototype);
+         	 		  $("#c-iodetail_checker").val(data.data[0].iodetail_checker);
+							$("#c-iodetail_checker").selectPageRefresh();
+         			   $("#c-iodetail_product_id").val(data.data[0].iodetail_product_id);
+         	   
+         			   $("#c-iodetail_product_id").selectPageRefresh();
+         			   $("#c-iodetail_custom_id").val(data.data[0].iodetail_custom_id);
+         			   $("#c-iodetail_custom_customtype_attribute").val(data.customtype.customtype_attribute);
+         			   $("#c-iodetail_custom_name").val(data.custom.custom_name);
+							$("#c-iodetail_custom_address").val(data.custom.custom_address);
+							$("#c-iodetail_custom_customtype").val(data.custom.custom_customtype);
+							$("#c-iodetail_card_code").val(data.data[0].iodetail_card_code);  
+							$("#c-iodetail_card_id").val(data.data[0].iodetail_card_id); 
+							$("#c-iodetail_in_id").val(data.data[0].iodetail_ID);
+					
+							var inDate = new Date(data.data[0].iodetail_iotime*1000);
+         			   //$("#c-iodetail_intime").val(data.iodetail_iotime);
+         			   $("#c-iodetail_intime").val(inDate.getFullYear()+'-'+(inDate.getMonth()+1)+'-'+inDate.getDate()+" "+inDate.getHours()+':'+inDate.getMinutes()+':'+inDate.getSeconds());
+         		
+         	   
+         				console.info(data); 
+         				count(); //计算净重及金额		
+         	
+         	    													      
+          		     //return false;    															
+         		  	},function(data){
+          		     //失败的回调 
+           		    $("#c-iodetail_plate_number").val('');
+         			 $("#c-iodetail_inweight").val('');
+         			 $("#c-iodetail_mototype").val('');
+         	  		 $("#c-iodetail_product_id").val('');
+         	   	 $("#c-iodetail_product_id").selectPageRefresh();
+         		    $("#c-iodetail_custom_customtype_attribute").val('');
+         		    $("#c-iodetail_custom_name").val('');
+				 	    $("#c-iodetail_custom_address").val('');
+						 $("#c-iodetail_custom_customtype").val('');
+						 $("#c-iodetail_card_code").val('');
+						 $("#c-iodetail_card_id").val(''); 
+					 	 $("#c-iodetail_in_id").val('');
+					
+						 $("#c-iodetail_custom_id").val('');
+         	    	 $("#c-iodetail_custom_name").val('');
+						 $("#c-iodetail_custom_address").val('');
+						 $("#c-iodetail_custom_customtype").val('');
+						 $("#c-iodetail_intime").val('');
+           		   //return false;	
+                  }											  		 		  
+ 				     ); 	
+	       	    }
+	            });
+
+ 					}
+         	    													      
                return false;    															
            	},function(data){
                //失败的回调 
@@ -307,6 +378,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form','printing'], function 
          	   $("#c-iodetail_custom_name").val('');
 					$("#c-iodetail_custom_address").val('');
 					$("#c-iodetail_custom_customtype").val('');
+					$("#c-iodetail_intime").val('');
            		//return false;	
             }											  		 		  
  				);
@@ -398,10 +470,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form','printing'], function 
             	 }, 
               	 function (data,ret) { //success  
              		console.info(data);     													      
-                  //return false;    															
+                  return false;    															
                	},function(data){
                  //失败的回调 
-           		  //return false;	
+           		  return false;	
                }											  		 		  
  			   	); 
  			   	//刷新表格    	

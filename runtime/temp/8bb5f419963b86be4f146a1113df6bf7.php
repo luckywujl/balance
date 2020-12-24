@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:101:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/financial/recharge/index.html";i:1608769115;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/work/indetail/list.html";i:1608648710;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -60,76 +60,18 @@
                             <div class="content">
                                 <div class="panel panel-default panel-intro">
     <?php echo build_heading(); ?>
+
     <div class="panel-body">
-  <form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
-    <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-1"><?php echo __('Card_encode'); ?>:</label>
-       
-        <div class="col-xs-12 col-sm-2" >   
-            <input id="c-card_encode"  class="form-control " placeholder="输入卡号或刷卡" name="card_encode" value="">              
-            
-        </div>
-        
-        
-        <div class="col-xs-12 col-sm-2" hidden="hidden">
-            <input id="c-account_object"  class="form-control" name="row[account_object]" type="text" value="客户充值">
-        </div>
-  
-        <label class="control-label col-xs-12 col-sm-1"><?php echo __('Account_custom_id'); ?>:</label>
-        <div class="col-xs-12 col-sm-2">
-            <input id="c-account_custom_id" data-rule="required" data-source="custom/custom/index" data-field="custom_name" data-primary-key="custom_id" class="form-control selectpage" name="row[account_custom_id]" type="text" value="">
-        </div>
-        
-        <label class="control-label col-xs-12 col-sm-1"><?php echo __('Custom_customtype'); ?>:</label>  
-        <div class="col-xs-12 col-sm-2" >   
-            <input id="c-custom_customtype"  class="form-control "  name="row[custom_customtype]" value="">              
-            
-        </div>
-        
-        
-     </div>
-     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-1"><?php echo __('Custom_account1'); ?>:</label>  
-        <div class="col-xs-12 col-sm-2" >   
-            <input id="c-custom_account" readonly="readonly"  class="form-control "  name="row[custom_account]" type="number" value="">              
-            
-        </div>
-        <label class="control-label col-xs-12 col-sm-1"><?php echo __('Recharge_amount'); ?>:</label>
-        <div class="col-xs-12 col-sm-2">
-            <input id="c-account_amount" data-rule="required" class="form-control" name="row[account_amount]" type="number">
-        </div>
-  
-        <label class="control-label col-xs-12 col-sm-1"><?php echo __('Account_paymentmode'); ?>:</label>
-        <div class="col-xs-12 col-sm-2">
-            <input id="c-account_paymentmode" data-rule="required" data-source="base/paymentmode/index" data-field="paymentmode" data-primary-key="paymentmode" class="form-control selectpage" name="row[account_paymentmode]" type="text">
-        </div>
-    
-        
-    </div>
-   
-    <div class="form-group layer-footer">
-        <label class="control-label col-xs-12 col-sm-2"></label>
-        <div class="col-xs-12 col-sm-8">
-            
-            <button type="reset" class="btn btn-default btn-embossed"><?php echo __('Reset'); ?></button>
-            <button type="button" class="btn btn-info btn-embossed btn-accept"><?php echo __('OK'); ?></button>
-        </div>
-    </div>
-</form>
-    
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade active in" id="one">
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
                         <a href="javascript:;" class="btn btn-primary btn-refresh" title="<?php echo __('Refresh'); ?>" ><i class="fa fa-refresh"></i> </a>
-                        <a href="javascript:;" class="btn btn-info btn-print btn-disabled disabled <?php echo $auth->check('financial/account/print')?'':'hide'; ?>" title="<?php echo __('补打票据'); ?>" ><i class="fa fa-leaf"></i> <?php echo __('补打票据'); ?></a>
                         
-
                         
                     </div>
                     <table id="table" class="table table-striped table-bordered table-hover table-nowrap"
-                           data-operate-edit="<?php echo $auth->check('financial/account/edit'); ?>" 
-                           data-operate-del="<?php echo $auth->check('financial/account/del'); ?>" 
+                          
                            width="100%">
                     </table>
                 </div>

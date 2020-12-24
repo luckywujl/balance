@@ -2,10 +2,11 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
     var Controller = {
         index: function () {
+        	Controller.api.bindevent();
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'financial/statement/index' + location.search,
+                    index_url: 'financial/statement/index?statement_code=S202012220001' + location.search,
                     add_url: 'financial/statement/add',
                     edit_url: 'financial/statement/edit',
                     del_url: 'financial/statement/del',
@@ -98,6 +99,20 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                  }
                  );
             });
+            //确定按钮
+            $(document).on("click", ".btn-accept", function () {
+                var opt = {
+                url: "financial/statement/index?ref=addtabs",
+                silent: true,
+                query:{
+        			    statement_code:"S202012220001",
+        			   
+          			 
+        				}
+   			 };
+
+   				 $("#table").bootstrapTable('refresh', opt);
+             });
             
             
         },

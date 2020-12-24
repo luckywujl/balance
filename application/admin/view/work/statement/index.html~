@@ -38,19 +38,19 @@
             <input id="c-iodetail_card_code" class="form-control" name="row[iodetail_card_code]" type="text">
         </div>
    
-        <div class="col-xs-12 col-sm-1" >
+        <div class="col-xs-12 col-sm-1" hidden="hidden" >
             <input id="c-iodetail_card_id" data-rule="required"  class="form-control " name="row[iodetail_card_id]" type="text" value="">
         </div>
         
-        <div class="col-xs-12 col-sm-1"  >
+        <div class="col-xs-12 col-sm-1" hidden="hidden"  >
             <input id="c-iodetail_custom_id" data-rule="required"  class="form-control " name="row[iodetail_custom_id]" type="text" value="">
         </div>
         
-        <div class="col-xs-12 col-sm-1" >
+        <div class="col-xs-12 col-sm-1" hidden="hidden" >
             <input id="c-iodetail_custom_customtype_attribute" data-rule="required"  class="form-control " name="row[iodetail_custom_customtype_attribute]" type="text" value="">
         </div>
         
-        <div class="col-xs-12 col-sm-1"   >
+        <div class="col-xs-12 col-sm-1" hidden="hidden"  >
             <input id="c-iodetail_in_id" data-rule="required"  class="form-control " name="row[iodetail_in_id]" type="text" value="">
         </div>
         

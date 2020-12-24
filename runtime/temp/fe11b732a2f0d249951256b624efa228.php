@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:102:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/financial/statement/index.html";i:1608392470;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:102:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/financial/statement/index.html";i:1608769132;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -72,6 +72,46 @@
 
 
     <div class="panel-body">
+    <form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        
+        
+        
+        <label class="control-label col-xs-12 col-sm-1"><?php echo __('Account_object'); ?>:</label>
+        <div class="col-xs-12 col-sm-2">
+            <input id="c-account_object" data-rule="required" data-source="base/payobject/index" data-field="payobject" data-primary-key="payobject" class="form-control selectpage" name="row[account_object]" type="text">
+        </div>
+  
+        <label class="control-label col-xs-12 col-sm-1"><?php echo __('Account_custom_id'); ?>:</label>
+        <div class="col-xs-12 col-sm-2">
+            <input id="c-account_custom_id" data-rule="required" data-source="custom/custom/index" data-field="custom_name" data-primary-key="custom_id" class="form-control selectpage" name="row[account_custom_id]" type="text" value="">
+        </div>
+     </div>
+     <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-1"><?php echo __('Account_amount'); ?>:</label>
+        <div class="col-xs-12 col-sm-2">
+            <input id="c-account_amount" data-rule="required" class="form-control" name="row[account_amount]" type="number">
+        </div>
+  
+        <label class="control-label col-xs-12 col-sm-1"><?php echo __('Account_paymentmode'); ?>:</label>
+        <div class="col-xs-12 col-sm-2">
+            <input id="c-account_paymentmode" data-rule="required" data-source="base/paymentmode/index" data-field="paymentmode" data-primary-key="paymentmode" class="form-control selectpage" name="row[account_paymentmode]" type="text">
+        </div>
+    
+        <label class="control-label col-xs-12 col-sm-1"><?php echo __('Account_remark'); ?>:</label>
+        <div class="col-xs-12 col-sm-2">
+            <input id="c-account_remark" class="form-control " rows="5" name="row[account_remark]" cols="50">
+        </div>
+    </div>
+   
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="button" class="btn btn-info btn-embossed btn-accept"><?php echo __('OK'); ?></button>
+            <button type="reset" class="btn btn-default btn-embossed"><?php echo __('Reset'); ?></button>
+        </div>
+    </div>
+</form>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade active in" id="one">
                 <div class="widget-body no-padding">
