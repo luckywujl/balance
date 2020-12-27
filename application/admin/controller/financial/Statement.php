@@ -4,7 +4,7 @@ namespace app\admin\controller\financial;
 
 use app\common\controller\Backend;
 use think\Db;
-
+use app\admin\model\custom as custom;
 /**
  * 结算清单
  *
@@ -21,6 +21,8 @@ class Statement extends Backend
     protected $searchFields = 'statement_code,customcustom.custom_code';
     protected $dataLimit = 'personal';
     protected $dataLimitField = 'company_id';
+    protected $noNeedRight = ['getcustominfobystatementcode'];
+    
 
     public function _initialize()
     {
@@ -150,5 +152,42 @@ class Statement extends Backend
     	$this->error(__('Parameter %s can not be empty', 'ids'));
     	$this->success('反结算完成');
     }
+    
+    /**
+    *通过结算单号获取客户信息
+    */
+    public function getcustominfobystatementcode()
+     {
+       if (!empty($this->request->post("statement_info"))){
+    	
+    	$statement_info = $this->request->post("statement_info");
+    	$statement = $this->model
+        ->where(['statement_code'=>$statement_info])//卡状态要求是正常 
+        ->find();  
+      
+       if ($statement){
+       	$custom = new custom\Custom();
+       	$custom_info = $custom
+       	->where(['custom_id'=>$statement['statement_custom_id'],'custom_status'=>0])//商户状态为正常
+       	->find();
+       	
+       	if($custom_info) {
+       		$custom_info['statement_outtime']=$statement['statement_outtime'];
+          //$this->error($custom_info['date'],null,null);
+       
+       		$this->success('执行成功',null,$custom_info);
+       	}else {
+        	 $this->error('卡号有误或商户状态异常，请核实',null,null);
+       	}   	
+       } else {
+       	
+    	   $this->error('结算单号输入有误或异常，请核实',null,null);
+    	   
+       } 
+    } 
+     
+     
+     
+     }
 
 }

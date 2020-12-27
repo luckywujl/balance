@@ -1,15 +1,5 @@
 <div class="panel panel-default panel-intro">
-    
-    <div class="panel-heading">
-        {:build_heading(null,FALSE)}
-        <ul class="nav nav-tabs" data-field="statement_status">
-            <li class="{:$Think.get.statement_status === null ? 'active' : ''}"><a href="#t-all" data-value="" data-toggle="tab">{:__('All')}</a></li>
-            {foreach name="statementStatusList" item="vo"}
-            <li class="{:$Think.get.statement_status === (string)$key ? 'active' : ''}"><a href="#t-{$key}" data-value="{$key}" data-toggle="tab">{$vo}</a></li>
-            {/foreach}
-        </ul>
-    </div>
-
+    {:build_heading()}
 
     <div class="panel-body">
         <div id="myTabContent" class="tab-content">
@@ -18,12 +8,11 @@
                     <div id="toolbar" class="toolbar">
                         <a href="javascript:;" class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
                         
-
                         
                     </div>
                     <table id="table" class="table table-striped table-bordered table-hover table-nowrap"
-                           data-operate-edit="{:$auth->check('financial/statementcount/edit')}" 
-                           data-operate-del="{:$auth->check('financial/statementcount/del')}" 
+                           data-operate-edit="{:$auth->check('report/accountpaymode/edit')}" 
+                           data-operate-del="{:$auth->check('report/accountpaymode/del')}" 
                            width="100%">
                     </table>
                 </div>
@@ -46,7 +35,7 @@
                         <div>
                         <input id="account_date" type="text"  class="form-control datetimerange" name="account_date" value="{:date("Y-m-d 00:00:00")} - {:date("Y-m-d 23:59:59")}"/>
                         </div>
-                       
+                        
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">

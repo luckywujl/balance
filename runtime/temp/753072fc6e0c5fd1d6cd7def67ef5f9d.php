@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:104:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/report/statementcount/index.html";i:1608989944;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:104:"/home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/report/accountpaymode/index.html";i:1608992235;s:81:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/layout/default.html";i:1602168706;s:78:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/meta.html";i:1602168706;s:80:"/home/www/admin/localhost_9002/wwwroot/application/admin/view/common/script.html";i:1602168706;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -59,17 +59,7 @@
                             <?php endif; ?>
                             <div class="content">
                                 <div class="panel panel-default panel-intro">
-    
-    <div class="panel-heading">
-        <?php echo build_heading(null,FALSE); ?>
-        <ul class="nav nav-tabs" data-field="statement_status">
-            <li class="<?php echo \think\Request::instance()->get('statement_status') === null ? 'active' : ''; ?>"><a href="#t-all" data-value="" data-toggle="tab"><?php echo __('All'); ?></a></li>
-            <?php if(is_array($statementStatusList) || $statementStatusList instanceof \think\Collection || $statementStatusList instanceof \think\Paginator): if( count($statementStatusList)==0 ) : echo "" ;else: foreach($statementStatusList as $key=>$vo): ?>
-            <li class="<?php echo \think\Request::instance()->get('statement_status') === (string)$key ? 'active' : ''; ?>"><a href="#t-<?php echo $key; ?>" data-value="<?php echo $key; ?>" data-toggle="tab"><?php echo $vo; ?></a></li>
-            <?php endforeach; endif; else: echo "" ;endif; ?>
-        </ul>
-    </div>
-
+    <?php echo build_heading(); ?>
 
     <div class="panel-body">
         <div id="myTabContent" class="tab-content">
@@ -78,12 +68,11 @@
                     <div id="toolbar" class="toolbar">
                         <a href="javascript:;" class="btn btn-primary btn-refresh" title="<?php echo __('Refresh'); ?>" ><i class="fa fa-refresh"></i> </a>
                         
-
                         
                     </div>
                     <table id="table" class="table table-striped table-bordered table-hover table-nowrap"
-                           data-operate-edit="<?php echo $auth->check('financial/statementcount/edit'); ?>" 
-                           data-operate-del="<?php echo $auth->check('financial/statementcount/del'); ?>" 
+                           data-operate-edit="<?php echo $auth->check('report/accountpaymode/edit'); ?>" 
+                           data-operate-del="<?php echo $auth->check('report/accountpaymode/del'); ?>" 
                            width="100%">
                     </table>
                 </div>
@@ -101,25 +90,22 @@
                 
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="form-group">
-                        <label class="control-label">结算时间</label>
-                        <input type="hidden" class="operate" data-name="statement_date" value="RANGE"/>
+                        <label class="control-label">收支时间</label>
+                        <input type="hidden" class="operate" data-name="account_date" value="RANGE"/>
                         <div>
-                        <input id="statement_date" type="text"  class="form-control datetimerange" name="statement_date" value="<?php echo date("Y-m-d 00:00:00"); ?> - <?php echo date("Y-m-d 23:59:59"); ?>"/>
+                        <input id="account_date" type="text"  class="form-control datetimerange" name="account_date" value="<?php echo date("Y-m-d 00:00:00"); ?> - <?php echo date("Y-m-d 23:59:59"); ?>"/>
                         </div>
-                        <input type="hidden" class="operate" data-name="statement_status" value="="/>
-                        <div>
-                        <input id = "statement_status" type="hidden"  class="form-control " name="statement_status" value=""/>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="form-group">
                         <label class="control-label"></label>
                         <div class="row">
-                            <div class="col-xs-6">
+                            <div class="col-xs-4">
                                 <input type="submit" class="btn btn-success btn-block" value="提交"/>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-xs-4">
                                 <input type="reset" class="btn btn-primary btn-block" value="重置"/>
                             </div>
                         </div>

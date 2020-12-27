@@ -52,8 +52,8 @@ class Dashboard extends Backend
         $customtypea = $customtype
         ->field('customtype')
         ->where(['company_id'=>$this->auth->company_id,'customtype_attribute'=>'1'])
-        ->select();
-        
+        ->select()
+        ->toArray();
         $custom_infoc = $custom
         ->where(['company_id'=>$this->auth->company_id])
         ->where('custom_customtype','IN',$customtypea)
@@ -63,8 +63,8 @@ class Dashboard extends Backend
         $customtypeb = $customtype
         ->field('customtype')
         ->where(['company_id'=>$this->auth->company_id,'customtype_attribute'=>'0'])
-        ->select();
-        
+        ->select()
+        ->toArray();
         $custom_infod = $custom
         ->where(['company_id'=>$this->auth->company_id])
         ->where('custom_customtype','IN',$customtypeb)

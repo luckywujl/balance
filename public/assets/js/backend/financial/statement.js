@@ -6,7 +6,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'financial/statement/index?statement_code=S202012220001' + location.search,
+                    index_url: 'financial/statement/index' + location.search,
                     add_url: 'financial/statement/add',
                     edit_url: 'financial/statement/edit',
                     del_url: 'financial/statement/del',
@@ -99,19 +99,153 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                  }
                  );
             });
+            //在客户信息栏回车
+            $("#c-custom_code").bind("keypress",function (event) {
+				if (event.keyCode =='13')
+				{
+					if ($("#c-custom_code").val()) {
+				//发送客户信息
+				Fast.api.ajax({
+        			url:'custom/card/getcardinfo',        													     
+             	data:{card_info:$("#c-custom_code").val()} //再将收到的create_code用POST方式发给主表控制器的total
+         	 }, 
+         	 function (data,ret) { //success 用于接收主表控制器发过来的数据
+         	   var options = table.bootstrapTable('getOptions');
+                options.pageNumber = 1;
+                options.queryParams = function (params) {
+                return {
+                    search: params.search,
+                    sort: params.sort,
+                    order: params.order,
+                    offset: params.offset,
+                    limit: params.limit,
+                    filter: JSON.stringify({'statement_custom_id':data.custom_id,'statement_outtime':$("#c-statement_outtime").val()}),
+                    op: JSON.stringify({'statement_custom_id': '=','statement_outtime':'RANGE'}),
+                  };
+                };
+               table.bootstrapTable('refresh', {});
+               Toastr.info("查询成功");
+         	   $("#c-custom_code").val(data.custom_name);
+         	   $("#c-statement_code").val('');
+         	   console.info(data);     													      
+               return false;    															
+            	},function(data){
+               //失败的回调 
+					//$("#c-account_custom_id").val('');
+         	   //$("#c-account_custom_id").selectPageRefresh();
+					//$("#c-custom_customtype").val('');
+					//$("#c-card_encode").val('');
+					//$("#c-custom_account").val('');
+           		//return false;	
+               }											  		 		  
+ 			   	);	
+ 			   } else {
+ 			       var options = table.bootstrapTable('getOptions');
+                options.pageNumber = 1;
+                options.queryParams = function (params) {
+                return {
+                    search: params.search,
+                    sort: params.sort,
+                    order: params.order,
+                    offset: params.offset,
+                    limit: params.limit,
+                    filter: JSON.stringify({'statement_outtime':$("#c-statement_outtime").val()}),
+                    op: JSON.stringify({'statement_outtime':'RANGE'}),
+                    };
+                };
+               table.bootstrapTable('refresh', {});
+               Toastr.info("查询成功");
+         	   $("#c-custom_code").val('');
+         	   $("#c-statement_code").val('');
+ 			   
+ 			   }
+			   	}
+				});
+   
+            //在结算单号栏回车
+             $("#c-statement_code").bind("keypress",function (event) {
+				if (event.keyCode =='13')
+				{
+				 if($("#c-statement_code").val()){
+				//发送结算单信息
+				Fast.api.ajax({
+        			url:'financial/statement/getcustominfobystatementcode',        													     
+             	data:{statement_info:$("#c-statement_code").val()} //再将收到的create_code用POST方式发给主表控制器的total
+         	 }, 
+         	 function (data,ret) { //success 用于接收主表控制器发过来的数据
+         	   $("#c-custom_code").val(data.custom_name);
+         	   var myDate = new Date(data.statement_outtime*1000);
+               $("#c-statement_outtime").val(myDate.getFullYear()+'-'+(myDate.getMonth()+1)+'-'+myDate.getDate()+' 00:00:00 - '+myDate.getFullYear()+'-'+(myDate.getMonth()+1)+'-'+myDate.getDate()+' 23:59:59');
+          	   
+         	   var options = table.bootstrapTable('getOptions');
+                options.pageNumber = 1;
+                options.queryParams = function (params) {
+                return {
+                    search: params.search,
+                    sort: params.sort,
+                    order: params.order,
+                    offset: params.offset,
+                    limit: params.limit,
+                    filter: JSON.stringify({'statement_custom_id':data.custom_id,'statement_outtime':$("#c-statement_outtime").val()}),
+                    op: JSON.stringify({'statement_custom_id': '=','statement_outtime':'RANGE'}),
+                  };
+                };
+               table.bootstrapTable('refresh', {});
+               Toastr.info("查询成功");
+         	   //$("#c-statement_code").val('');
+         	   console.info(data);     													      
+               return false;    															
+            	},function(data){
+               //失败的回调 
+					//$("#c-account_custom_id").val('');
+         	   //$("#c-account_custom_id").selectPageRefresh();
+					//$("#c-custom_customtype").val('');
+					//$("#c-card_encode").val('');
+					//$("#c-custom_account").val('');
+           		//return false;	
+               }											  		 		  
+ 			   	);
+ 			   } else {
+ 			       var options = table.bootstrapTable('getOptions');
+                options.pageNumber = 1;
+                options.queryParams = function (params) {
+                return {
+                    search: params.search,
+                    sort: params.sort,
+                    order: params.order,
+                    offset: params.offset,
+                    limit: params.limit,
+                    filter: JSON.stringify({'statement_outtime':$("#c-statement_outtime").val()}),
+                    op: JSON.stringify({'statement_outtime':'RANGE'}),
+                    };
+                };
+               table.bootstrapTable('refresh', {});
+               Toastr.info("查询成功");
+         	   $("#c-custom_code").val('');
+         	   $("#c-statement_code").val('');
+ 			   }	
+			   	}
+				});
+            
             //确定按钮
             $(document).on("click", ".btn-accept", function () {
-                var opt = {
-                url: "financial/statement/index?ref=addtabs",
-                silent: true,
-                query:{
-        			    statement_code:"S202012220001",
-        			   
-          			 
-        				}
-   			 };
+            	 var options = table.bootstrapTable('getOptions');
+                options.pageNumber = 1;
+                options.queryParams = function (params) {
+                return {
+                    search: params.search,
+                    sort: params.sort,
+                    order: params.order,
+                    offset: params.offset,
+                    limit: params.limit,
+                    filter: JSON.stringify({'statement_code':'S202012230005'}),
+                    op: JSON.stringify({'statement_code': 'like'}),
+                };
+            };
+            table.bootstrapTable('refresh', {});
+            Toastr.info("查询成功");
+            return false;
 
-   				 $("#table").bootstrapTable('refresh', opt);
              });
             
             

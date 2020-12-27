@@ -21,7 +21,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
                 pk: 'statement_customtype',
                 sortName: 'statement_customtype',
-                searchFormVisible:false,
+                searchFormVisible:true,
 					 search: false, //快速搜索
                 searchFormTemplate: 'customformtpl',
                

@@ -5,16 +5,16 @@ namespace app\admin\controller\report;
 use app\common\controller\Backend;
 
 /**
- * 结算清单
+ * 收支明细
  *
  * @icon fa fa-circle-o
  */
-class Statementcount extends Backend
+class Account extends Backend
 {
     
     /**
-     * Statementcount模型对象
-     * @var \app\admin\model\financial\Statementcount
+     * Account模型对象
+     * @var \app\admin\model\report\Account
      */
     protected $model = null;
     protected $searchFields = '';
@@ -24,8 +24,8 @@ class Statementcount extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = new \app\admin\model\report\Statementcount;
-        $this->view->assign("statementStatusList", $this->model->getStatementStatusList());
+        $this->model = new \app\admin\model\report\Account;
+        $this->view->assign("accountTypeList", $this->model->getAccountTypeList());
     }
 
     public function import()
@@ -38,27 +38,14 @@ class Statementcount extends Backend
      * 因此在当前控制器中可不用编写增删改查的代码,除非需要自己控制这部分逻辑
      * 需要将application/admin/library/traits/Backend.php中对应的方法复制到当前控制器,然后进行修改
      */
-    
-
-    /**
+      /**
      * 查看
      */
     public function index()
     {
-        //当前是否为关联查询
-        $this->relationSearch = true;
-        //获取提交的数据参数
-        $filter = $this->request->get("filter",'');
-        $filter = (array)json_decode($filter, true);
-        
         //设置过滤方法
-         
-
         $this->request->filter(['strip_tags', 'trim']);
-       
-
         if ($this->request->isAjax()) {
-        	
             //如果发送的来源是Selectpage，则转发到Selectpage
             if ($this->request->request('keyField')) {
                 return $this->selectpage();
@@ -66,28 +53,18 @@ class Statementcount extends Backend
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
             $list = $this->model
-            		  ->field('statement_date,statement_customtype,statement_status,count(*) as statement_number,SUM(statement_NW) as statement_NW,SUM(statement_cost) as statement_cost,SUM(statement_pay) as statement_pay,round(SUM(statement_pay)/count(*),2) as statement_avg')
-                    ->with(['customcustom'])
-                    ->where($where)
-                    ->group('statement_customtype')
-                    ->order($sort, $order)
-                    ->paginate($limit);
-
-            foreach ($list as $row) {
-                
-                
-            }
+                ->field('account_type,account_object,round(sum(account_amount),2) as account_amount,count(*) as account_number')     
+                ->where($where)
+                ->group('account_type,account_object')
+                ->order($sort, $order)
+                ->paginate($limit);
 
             $result = array("total" => $list->total(), "rows" => $list->items());
-            
+
             return json($result);
         }
-        if (!isset($filter)) {
-         $this->assignConfig('statement_date',$filter);
-        }
         return $this->view->fetch();
-        
- 
     }
+    
 
 }
