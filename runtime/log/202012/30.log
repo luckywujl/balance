@@ -1,0 +1,485 @@
+---------------------------------------------------------------
+[ 2020-12-30T08:05:44+08:00 ] 127.0.0.1 GET 127.0.0.1:9002/PByGmRKgDe.php/index/index
+[运行时间：0.857760s] [吞吐率：1.17req/s] [内存消耗：1,313.31kb] [文件加载：128]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.021781s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.086619s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/thinkphp/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @app_dispatch [ RunTime:0.011167s ]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'uid=1; token=2900af95-3f2a-422d-85e9-6ed04a22d6d4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Safari/537.36 Qaxbrowser',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1:9002',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.004172s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /home/www/admin/localhost_9002/wwwroot/public/../application/common/view/tpl/dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.000547s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-12-30T08:05:44+08:00 ] 127.0.0.1 GET 127.0.0.1:9002/PByGmRKgDe.php/index/index
+[运行时间：0.857769s] [吞吐率：1.17req/s] [内存消耗：1,793.05kb] [文件加载：128]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.021770s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.086704s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/thinkphp/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @app_dispatch [ RunTime:0.011198s ]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'uid=1; token=2900af95-3f2a-422d-85e9-6ed04a22d6d4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Safari/537.36 Qaxbrowser',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1:9002',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.004192s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /home/www/admin/localhost_9002/wwwroot/public/../application/common/view/tpl/dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.000524s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-12-30T08:05:48+08:00 ] 127.0.0.1 GET 127.0.0.1:9002/PByGmRKgDe.php/index/login?url=%2FPByGmRKgDe.php%2Findex%2Findex
+[运行时间：0.098187s] [吞吐率：10.18req/s] [内存消耗：407.62kb] [文件加载：132]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000139s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000488s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/thinkphp/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @app_dispatch [ RunTime:0.000115s ]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'uid=1; token=2900af95-3f2a-422d-85e9-6ed04a22d6d4; PHPSESSID=23bl0ls9cof1dnt93pnungurvr',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1:9002/PByGmRKgDe.php/index/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Safari/537.36 Qaxbrowser',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1:9002',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'url' => '/PByGmRKgDe.php/index/index',
+)
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000195s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @config_init [ RunTime:0.010600s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn/index.php
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @action_begin [ RunTime:0.000048s ]
+[ info ] [ RUN ] app\admin\controller\Index->login[ /home/www/admin/localhost_9002/wwwroot/application/admin/controller/Index.php ]
+[ info ] [ VIEW ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/index/login.html [ array (
+  0 => 'breadcrumb',
+  1 => 'site',
+  2 => 'config',
+  3 => 'auth',
+  4 => 'admin',
+  5 => 'background',
+  6 => 'title',
+) ]
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.000033s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-12-30T08:05:48+08:00 ] 127.0.0.1 GET 127.0.0.1:9002/PByGmRKgDe.php/ajax/lang?callback=define&controllername=index&lang=zh-cn&v=1609286747&v=1609286747
+[运行时间：0.085366s] [吞吐率：11.71req/s] [内存消耗：407.63kb] [文件加载：133]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000094s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000286s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/thinkphp/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @app_dispatch [ RunTime:0.000025s ]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'ajax',
+    2 => 'lang',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'uid=1; token=2900af95-3f2a-422d-85e9-6ed04a22d6d4; PHPSESSID=23bl0ls9cof1dnt93pnungurvr',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => '*/*',
+  'user-agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Safari/537.36 Qaxbrowser',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1:9002',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'callback' => 'define',
+  'controllername' => 'index',
+  'lang' => 'zh-cn',
+  'v' => '1609286747',
+)
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000209s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @config_init [ RunTime:0.000075s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn/ajax.php
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @action_begin [ RunTime:0.000071s ]
+[ info ] [ RUN ] app\admin\controller\Ajax->lang[ /home/www/admin/localhost_9002/wwwroot/application/admin/controller/Ajax.php ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn/index.php
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.000052s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-12-30T08:05:52+08:00 ] 127.0.0.1 POST 127.0.0.1:9002/PByGmRKgDe.php/index/login?url=%2FPByGmRKgDe.php%2Findex%2Findex
+[运行时间：0.508924s] [吞吐率：1.96req/s] [内存消耗：657.09kb] [文件加载：141]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000124s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000470s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/thinkphp/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @app_dispatch [ RunTime:0.000073s ]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'uid=1; token=2900af95-3f2a-422d-85e9-6ed04a22d6d4; PHPSESSID=23bl0ls9cof1dnt93pnungurvr; think_var=zh-cn',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Safari/537.36 Qaxbrowser',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1:9002',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '72',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1:9002',
+)
+[ info ] [ PARAM ] array (
+  'url' => '/PByGmRKgDe.php/index/index',
+  '__token__' => 'df4bd5f7841fc53d4750124ddb5c30df',
+  'username' => '1001',
+  'password' => '123456',
+)
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000287s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @config_init [ RunTime:0.000150s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn/index.php
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @action_begin [ RunTime:0.000040s ]
+[ info ] [ RUN ] app\admin\controller\Index->login[ /home/www/admin/localhost_9002/wwwroot/application/admin/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.177435s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-12-30T08:05:52+08:00 ] 127.0.0.1 GET 127.0.0.1:9002/PByGmRKgDe.php/index/index
+[运行时间：0.418607s] [吞吐率：2.39req/s] [内存消耗：805.29kb] [文件加载：151]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000098s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000352s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/thinkphp/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @app_dispatch [ RunTime:0.000030s ]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'uid=1; token=2900af95-3f2a-422d-85e9-6ed04a22d6d4; PHPSESSID=23bl0ls9cof1dnt93pnungurvr; think_var=zh-cn',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Safari/537.36 Qaxbrowser',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1:9002',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000220s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @config_init [ RunTime:0.000119s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn/index.php
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @action_begin [ RunTime:0.000031s ]
+[ info ] [ RUN ] app\admin\controller\Index->index[ /home/www/admin/localhost_9002/wwwroot/application/admin/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/index/index.html [ array (
+  0 => 'breadcrumb',
+  1 => 'site',
+  2 => 'config',
+  3 => 'auth',
+  4 => 'admin',
+  5 => 'menulist',
+  6 => 'navlist',
+  7 => 'fixedmenu',
+  8 => 'referermenu',
+  9 => 'title',
+) ]
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.000029s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-12-30T08:05:53+08:00 ] 127.0.0.1 GET 127.0.0.1:9002/PByGmRKgDe.php/dashboard?addtabs=1
+[运行时间：0.594132s] [吞吐率：1.68req/s] [内存消耗：762.17kb] [文件加载：143]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000097s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000284s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/thinkphp/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @app_dispatch [ RunTime:0.000025s ]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'dashboard',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'uid=1; token=2900af95-3f2a-422d-85e9-6ed04a22d6d4; PHPSESSID=23bl0ls9cof1dnt93pnungurvr; think_var=zh-cn',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Safari/537.36 Qaxbrowser',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1:9002',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'addtabs' => '1',
+)
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000143s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @config_init [ RunTime:0.000067s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn/dashboard.php
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @action_begin [ RunTime:0.000046s ]
+[ info ] [ RUN ] app\admin\controller\Dashboard->index[ /home/www/admin/localhost_9002/wwwroot/application/admin/controller/Dashboard.php ]
+[ info ] [ VIEW ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/view/dashboard/index.html [ array (
+  0 => 'breadcrumb',
+  1 => 'site',
+  2 => 'config',
+  3 => 'auth',
+  4 => 'admin',
+  5 => 'totaluser',
+  6 => 'totalviews',
+  7 => 'totalorder',
+  8 => 'totalorderamount',
+  9 => 'todayuserlogin',
+  10 => 'todayusersignup',
+  11 => 'todayorder',
+  12 => 'unsettleorder',
+  13 => 'sevendnu',
+  14 => 'sevendau',
+  15 => 'paylist',
+  16 => 'createlist',
+  17 => 'addonversion',
+  18 => 'uploadmode',
+) ]
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.000035s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-12-30T08:05:53+08:00 ] 127.0.0.1 GET 127.0.0.1:9002/PByGmRKgDe.php/ajax/lang?callback=define&controllername=index&lang=zh-cn&v=1609286752&v=1609286752
+[运行时间：0.008708s] [吞吐率：114.84req/s] [内存消耗：408.04kb] [文件加载：133]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000119s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001220s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/thinkphp/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @app_dispatch [ RunTime:0.000049s ]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'ajax',
+    2 => 'lang',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'uid=1; token=2900af95-3f2a-422d-85e9-6ed04a22d6d4; PHPSESSID=23bl0ls9cof1dnt93pnungurvr; think_var=zh-cn',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => '*/*',
+  'user-agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Safari/537.36 Qaxbrowser',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1:9002',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'callback' => 'define',
+  'controllername' => 'index',
+  'lang' => 'zh-cn',
+  'v' => '1609286752',
+)
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000349s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @config_init [ RunTime:0.000112s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn/ajax.php
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @action_begin [ RunTime:0.000034s ]
+[ info ] [ RUN ] app\admin\controller\Ajax->lang[ /home/www/admin/localhost_9002/wwwroot/application/admin/controller/Ajax.php ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn/index.php
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.000036s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-12-30T08:05:53+08:00 ] 127.0.0.1 GET 127.0.0.1:9002/PByGmRKgDe.php/ajax/lang?callback=define&controllername=dashboard&lang=zh-cn&v=1609286752&v=1609286752
+[运行时间：0.004289s] [吞吐率：233.16req/s] [内存消耗：407.13kb] [文件加载：133]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000093s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000280s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/thinkphp/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @app_dispatch [ RunTime:0.000026s ]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'ajax',
+    2 => 'lang',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'uid=1; token=2900af95-3f2a-422d-85e9-6ed04a22d6d4; PHPSESSID=23bl0ls9cof1dnt93pnungurvr; think_var=zh-cn',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => '*/*',
+  'user-agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Safari/537.36 Qaxbrowser',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1:9002',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'callback' => 'define',
+  'controllername' => 'dashboard',
+  'lang' => 'zh-cn',
+  'v' => '1609286752',
+)
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.000190s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @config_init [ RunTime:0.000066s ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn/ajax.php
+[ info ] [ BEHAVIOR ] Run \addons\geetest\Geetest @action_begin [ RunTime:0.000020s ]
+[ info ] [ RUN ] app\admin\controller\Ajax->lang[ /home/www/admin/localhost_9002/wwwroot/application/admin/controller/Ajax.php ]
+[ info ] [ LANG ] /home/www/admin/localhost_9002/wwwroot/public/../application/admin/lang/zh-cn/dashboard.php
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.000020s ]
+[ info ] [ LOG ] INIT File

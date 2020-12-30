@@ -5,6 +5,7 @@ use think\Db;
 use app\common\controller\Backend;
 use think\Config;
 use app\admin\model\custom as custom;
+use app\admin\model\work as work;
 
 /**
  * 控制台
@@ -51,12 +52,14 @@ class Dashboard extends Backend
         //获取采购用户数
         $customtypea = $customtype
         ->field('customtype')
-        ->where(['company_id'=>$this->auth->company_id,'customtype_attribute'=>'1'])
+        ->where(['company_id'=>$this->auth->company_id])
         ->select();
+       // print_r(array_column($customtypea ,'customtype'));
+        //$this->error($customtypea);
         
         $custom_infoc = $custom
         ->where(['company_id'=>$this->auth->company_id])
-        ->where('custom_customtype','IN',$customtypea)
+        ->where('custom_customtype','IN',array_column($customtypea ,'customtype'))
         ->count();
         
         //获取供应商用户数
@@ -67,18 +70,36 @@ class Dashboard extends Backend
         
         $custom_infod = $custom
         ->where(['company_id'=>$this->auth->company_id])
-        ->where('custom_customtype','IN',$customtypeb)
+        ->where('custom_customtype','IN',array_column($customtypeb ,'customtype'))
         ->count();
         
+        //计算今日进、离场车次
+        $iodetail = new work\Indetail();
+        $iodetail_in = $iodetail
+            ->where('iodetail_iotime','between time',[date('Y-m-d 00:00:01'),date('Y-m-d 23:59:59')])
+            ->where('company_id',$this->auth->company_id)
+            ->where('iodetail_iotype',1)
+            ->count();
+        $iodetail_out = $iodetail
+            ->where('iodetail_iotime','between time',[date('Y-m-d 00:00:01'),date('Y-m-d 23:59:59')])
+            ->where('company_id',$this->auth->company_id)
+            ->where('iodetail_iotype',0)
+            ->count();    
+        
+        //计算场内现存车辆数
+        $iodetail_stay = $iodetail
+            ->where('company_id',$this->auth->company_id)
+            ->where(['iodetail_iotype'=>1,'iodetail_status'=>0])
+            ->count();    
         
         $this->view->assign([
             'totaluser'        => $custom_info,
             'totalviews'       => $customtype_info,
             'totalorder'       => $custom_infoc,
             'totalorderamount' => $custom_infod,
-            'todayuserlogin'   => 321,
-            'todayusersignup'  => 430,
-            'todayorder'       => 2324,
+            'todayuserlogin'   => $iodetail_out,
+            'todayusersignup'  => $iodetail_in,
+            'todayorder'       => $iodetail_stay,
             'unsettleorder'    => 132,
             'sevendnu'         => '80%',
             'sevendau'         => '32%',

@@ -134,7 +134,8 @@ class Indetail extends Backend
             $list = $this->model
                     ->with(['customcustom','baseproduct'])
                     ->where($where)
-                    ->where(['iodetail_status'=>0,'iodetail_iotype'=>1])  //未结算,入数据
+                    //->where(['iodetail_status'=>0,'iodetail_iotype'=>1])  //未结算,入数据
+                    ->where(['iodetail_iotype'=>1])  //未结算,入数据
                     ->order($sort, $order)
                     ->paginate($limit);
 
