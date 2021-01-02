@@ -111,6 +111,7 @@ class Statement extends Backend
                     }
                     $params['statement_status'] = 1;
                     $params['statement_date'] = time();
+                    $params['statement_operator'] = $this->auth->nickname;
                     $result = $row->allowField(true)->save($params);
                     Db::commit();
                 } catch (ValidateException $e) {

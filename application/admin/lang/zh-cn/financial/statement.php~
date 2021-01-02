@@ -15,6 +15,7 @@ return [
     'Statement_product_price'            => '计费单价',
     'Statement_discount'                 => '折扣',
     'Statement_cost'                     => '实际费用',
+    'Statement_pay'                      => '实付金额',
     'Statement_intime'                   => '入场时间',
     'Statement_outtime'                  => '出场时间',
     'Statement_remark'                   => '备注',

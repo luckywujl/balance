@@ -33,7 +33,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 								{field: 'customcustom.custom_name', title: __('Customcustom.custom_name'), operate: 'LIKE'},
                         {field: 'customcustom.custom_customtype', title: __('Customcustom.custom_customtype'), operate: 'LIKE'},
                         {field: 'statement_status', title: __('Statement_status'), searchList: {"0":__('Statement_status 0'),"1":__('Statement_status 1')}, formatter: Table.api.formatter.status},
-                                                
+                        {field: 'statement_operator', title: __('Statement_operator'), operate: 'LIKE'},                        
                         {field: 'statement_date', title: __('Statement_date'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
                         {field: 'statement_plate_number', title: __('Statement_plate_number'), operate: 'LIKE'},
                         {field: 'statement_mototype', title: __('Statement_mototype'), operate: 'LIKE'},

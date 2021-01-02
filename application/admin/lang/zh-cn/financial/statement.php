@@ -26,6 +26,7 @@ return [
     'Statement_status 0'                 => '未清算',
     'Statement_status 1'                 => '已清算',
     'Company_id'                         => '数据归属',
+    'Statement_operator'					  => '结算员',
     'Baseproduct.product_id'             => '货品信息ID',
     'Baseproduct.product_code'           => '货品编码',
     'Baseproduct.product_name'           => '货品名称',
