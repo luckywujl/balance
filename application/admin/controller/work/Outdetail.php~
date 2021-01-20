@@ -140,12 +140,39 @@ class Outdetail extends Backend
                     	$staparams['statement_GW'] = $params['iodetail_weight'];//出场重量
                     	$staparams['statement_tare'] = $params['iodetail_inweight'];//进场重量
                     	
-                    	} else { //售买方，出场重量为皮重，进场重量为毛重
+                    	} else { //售卖方，出场重量为皮重，进场重量为毛重
                     	$staparams['statement_GW'] = $params['iodetail_inweight'];//出场重量
                     	$staparams['statement_tare'] = $params['iodetail_weight'];//进场重量
+                    	//卖方出场，将重量视为车皮重保存入库
+                    	$info =[];
+                    	$info['moto_platenumber'] = $params['iodetail_plate_number'];
+                    	$info['moto_type'] =$params['iodetail_mototype'];
+                    	$info['moto_tare'] =$params['iodetail_weight'];
+                    	$info['moto_date'] =time();
+                    	$info['moto_tarecode'] =$params['iodetail_code'];
+                    	$info['moto_operator'] =$this->auth->nickname;
+                    	$info['company_id'] =$this->auth->company_id;
+                    	//1、先进库在查询该车牌号，如果找到，再进行比较大小，如果找不到则添加
+                    	$moto = new work\Motoinfo();
+                    	$motoinfo = $moto
+                    	    ->where(['moto_platenumber'=>$info['moto_platenumber'],'company_id'=>$info['company_id']])
+                    	    ->find();
+                    	 //2、如果找到再比大小   
+                    	 if($motoinfo) {
+                    	 	if($motoinfo['moto_tare']>$info['moto_tare']) {
+                    	 		$resu=$moto
+                    	    ->where(['moto_platenumber'=>$info['moto_platenumber'],'company_id'=>$info['company_id']])
+                    	    ->update($info);
+                    	 	}else{
+                    	 		
+                    	 	}
+                    	 
+                    	 }else {//如查找不到则直接添加
+                    	   $resu = $moto->allowField(true)->save($info);
+                    	 }
                     	
                     	}
-                    	
+                    	//以上代码完成车皮重保存
                     	$staparams['statement_NW'] = $params['iodetail_NW'];//毛重减皮重等于净重
                     	
                     	$staparams['statement_product_price'] = $params['iodetail_product_price'];//单价

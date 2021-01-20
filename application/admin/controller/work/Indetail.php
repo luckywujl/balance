@@ -6,6 +6,7 @@ use app\common\controller\Backend;
 use think\Db;
 use app\admin\model\custom as custom;
 use app\admin\model\base as base;
+use app\admin\model\work as work;
 
 /**
  * 进/出明细
@@ -81,7 +82,9 @@ class Indetail extends Backend
                 ->where(['customtype'=>$custom_info['custom_customtype'],'company_id'=>$this->auth->company_id])
                 ->find();
                 if($customtype_info['customtype_attribute']==1) {
-                  $params['iodetail_product_id'] = '';//如果同需方进场，则无需货品信息
+                  $params['iodetail_product_id'] = '';//如果是采购方进场，则无需货品信息
+                  //如查是采购方，可视为空车，将空车车皮重写入库中
+                  
                 }
 
                 if ($this->dataLimit && $this->dataLimitFieldAutoFill) {
@@ -98,10 +101,43 @@ class Indetail extends Backend
                     }
                     $result = $this->model->allowField(true)->save($params);
                     //$this->error(__('No rows were inserted'));
-                    Db::commit();
-                    $iodetail['iodetail_id'] =$this->model->iodetail_ID;//出场单ID	
+                    
+                    $iodetail['iodetail_id'] =$this->model->iodetail_ID;//进场单ID	
+                    //如查是采购方，可视为空车，将空车车皮重写入库中
+                    if($customtype_info['customtype_attribute']==1) {
+                    	$info =[];
+                    	$info['moto_platenumber'] = $this->model->iodetail_plate_number;
+                    	$info['moto_type'] =$this->model->iodetail_mototype;
+                    	$info['moto_tare'] =$this->model->iodetail_weight;
+                    	$info['moto_date'] =time();
+                    	$info['moto_tarecode'] =$this->model->iodetail_code;
+                    	$info['moto_operator'] =$this->auth->nickname;
+                    	$info['company_id'] =$this->auth->company_id;
+                    	//1、先进库在查询该车牌号，如果找到，再进行比较大小，如果找不到则添加
+                    	$moto = new work\Motoinfo();
+                    	$motoinfo = $moto
+                    	    ->where(['moto_platenumber'=>$info['moto_platenumber'],'company_id'=>$info['company_id']])
+                    	    ->find();
+                    	 //2、如果找到再比大小   
+                    	 if($motoinfo) {
+                    	 	if($motoinfo['moto_tare']>$info['moto_tare']) {
+                    	 		$resu=$moto
+                    	    ->where(['moto_platenumber'=>$info['moto_platenumber'],'company_id'=>$info['company_id']])
+                    	    ->update($info);
+                    	 	}else{
+                    	 		
+                    	 	}
+                    	 
+                    	 }else {//如查找不到则直接添加
+                    	   $resu = $moto->allowField(true)->save($info);
+                    	 }
+                    
                     	
-                     $this->success(null,null,$iodetail); 
+                       
+                  
+                    }
+                    Db::commit();	
+                    $this->success(null,null,$iodetail); //返回进场单号给
                 } catch (ValidateException $e) {
                     Db::rollback();
                     $this->error($e->getMessage());

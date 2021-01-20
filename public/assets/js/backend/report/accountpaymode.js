@@ -6,11 +6,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Table.api.init({
                 extend: {
                     index_url: 'report/accountpaymode/index' + location.search,
-                    add_url: 'report/accountpaymode/add',
-                    edit_url: 'report/accountpaymode/edit',
-                    del_url: 'report/accountpaymode/del',
-                    multi_url: 'report/accountpaymode/multi',
-                    import_url: 'report/accountpaymode/import',
+                   
                     table: 'financial_account',
                 }
             });
